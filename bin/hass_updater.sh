@@ -1,9 +1,10 @@
 #!/bin/bash
-# CrossEye Homeassistant Virtual Environment Update Script
+# CrossEye Home Assistant (HASS) Virtual Environment Update Script
 
 # Global variables
 HASS_INSTALLED_VERSION=$(/srv/homeassistant/bin/hass --version)
 HASS_AVAILABLE_VERSION=$(/usr/bin/curl --silent "https://api.github.com/repos/home-assistant/core/releases/latest" | /usr/bin/grep -Po '"tag_name": "\K.*?(?=")')
+HASS_VIRTUALENV_BASE="/srv/homeassistant"
 HASS_VIRTUALENV_USER="homeassistant"
 HASS_SERVICE_NAME="homeassistant.service"
 
@@ -20,7 +21,8 @@ if (( $(awk 'BEGIN {print ("'$HASS_AVAILABLE_VERSION'" > "'$HASS_INSTALLED_VERSI
     printf "[INFO] Newer version available, beginning upgrade...\n"
     /usr/bin/systemctl stop $HASS_SERVICE_NAME
     sudo -u $HASS_VIRTUALENV_USER -H -s << 'EOF'
-        . /srv/homeassistant/bin/activate
+        cd $HASS_VIRTUALENV_BASE
+        . bin/activate
         /usr/bin/pip3 install --upgrade homeassistant
         exit
 EOF
