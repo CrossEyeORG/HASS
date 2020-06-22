@@ -23,7 +23,7 @@ if (( $(awk 'BEGIN {print ("'$HASS_AVAILABLE_VERSION'" > "'$HASS_INSTALLED_VERSI
     sudo -u $HASS_VIRTUALENV_USER -H -s << 'EOF'
         cd $HASS_VIRTUALENV_BASE
         . bin/activate
-        /usr/bin/pip3 install --upgrade homeassistant
+        bin/pip3 install --upgrade homeassistant
         exit
 EOF
     /usr/bin/systemctl start $HASS_SERVICE_NAME
