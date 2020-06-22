@@ -20,7 +20,7 @@ EOF
 if (( $(awk 'BEGIN {print ("'$HASS_AVAILABLE_VERSION'" > "'$HASS_INSTALLED_VERSION'")}') )); then
     printf "[INFO] Newer version available, beginning upgrade...\n"
     /usr/bin/systemctl stop $HASS_SERVICE_NAME
-    sudo -u $HASS_VIRTUALENV_USER -H -s << 'EOF'
+    sudo -u $HASS_VIRTUALENV_USER -H -s << EOF
         cd $HASS_VIRTUALENV_BASE
         . bin/activate
         bin/pip3 install --upgrade homeassistant
