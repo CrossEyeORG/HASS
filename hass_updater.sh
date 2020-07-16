@@ -1,5 +1,13 @@
 #!/bin/bash
-# CrossEye Home Assistant (HASS) Virtual Environment Update Script
+################################################################
+#Script Name    : hass_updater.sh
+#Description    : Auto updates Home Assistant (HASS) Python virtual environment.
+#Author         : Gabriel Zellmer (CrossEye)
+#Repository     : https://github.com/CrossEyeORG/HASS
+#Version        : 1.0
+#Notes          : Needs the globals configured to your local environment and added to a cron job.
+################################################################
+
 
 # Global variables
 HASS_INSTALLED_VERSION=$(/srv/homeassistant/bin/hass --version)
