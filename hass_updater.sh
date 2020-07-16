@@ -10,11 +10,11 @@
 
 
 # Global variables
-HASS_INSTALLED_VERSION=$(/srv/homeassistant/bin/hass --version)
-HASS_AVAILABLE_VERSION=$(/usr/bin/curl --silent "https://api.github.com/repos/home-assistant/core/releases/latest" | /usr/bin/grep -Po '"tag_name": "\K.*?(?=")')
 HASS_VIRTUALENV_BASE="/srv/homeassistant"
 HASS_VIRTUALENV_USER="homeassistant"
 HASS_SERVICE_NAME="homeassistant.service"
+HASS_INSTALLED_VERSION=$($HASS_VIRTUALENV_BASE/bin/hass --version)
+HASS_AVAILABLE_VERSION=$(/usr/bin/curl --silent "https://api.github.com/repos/home-assistant/core/releases/latest" | /usr/bin/grep -Po '"tag_name": "\K.*?(?=")')
 
 # Emitting logs to Syslog
 exec 1> >(logger -s -t $(basename $0)) 2>&1
