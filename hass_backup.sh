@@ -22,14 +22,14 @@ exec 1> >(logger -s -t $(basename $0)) 2>&1
 if [ -d ${HASS_BACKUP_FROM} ] && [ -d ${HASS_BACKUP_TO} ]; then
     if [ ${HASS_INCLUDE_DB} = true ] ; then
         printf "[INFO] Starting backup including database...\n"
-        tar -cpzf ${HASS_BACKUP_SYNTAX} --exclude "temp/*" --exclude "deps/*" --exclude "*.log" --absolute-names ${HASS_BACKUP_FROM}
+        tar -cpzf ${HASS_BACKUP_SYNTAX} --exclude="temp/*" --exclude="deps/*" --exclude="*.log" --absolute-names ${HASS_BACKUP_FROM}
     else
         printf "[INFO] Starting backup excluding database...\n"
         tar -cpzf ${HASS_BACKUP_SYNTAX} --exclude="temp/*" --exclude="deps/*" --exclude="home-assistant*.db" --exclude="*.log" --absolute-names ${HASS_BACKUP_FROM}
     fi
     printf "[INFO] Backup complete, checking retention...\n"
     if [ ${HASS_RETENTION_DAYS} = 0 ] ; then
-        printf "[INFO] Keeping all backups as retention is set to 0...\n"
+        printf "[INFO] Keeping all backups as retention is set to 0.\n"
     else
         printf "[INFO] Deleting backups older than ${HASS_RETENTION_DAYS} days...\n"
         OLDFILES=$(find ${HASS_BACKUP_TO} -mindepth 1 -mtime +${HASS_RETENTION_DAYS} -delete -print)
