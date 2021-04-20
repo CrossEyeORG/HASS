@@ -1,6 +1,6 @@
-<a href="https://www.home-assistant.io/"><img src="https://raw.githubusercontent.com/home-assistant/assets/master/logo-round-192x192.png" title="Home Assistant" alt="HomeAssistant"></a>
+<a href="https://www.home-assistant.io/"><img src="https://raw.githubusercontent.com/home-assistant/assets/master/logo/logo-small.png" title="Home Assistant" alt="HomeAssistant"></a>
 
-<!-- [![Home Assistant](https://raw.githubusercontent.com/home-assistant/assets/master/logo-round-192x192.png)](https://www.home-assistant.io/) -->
+<!-- [![Home Assistant](https://raw.githubusercontent.com/home-assistant/assets/master/logo/logo-small.png)](https://www.home-assistant.io/) -->
 
 # Home Assistant (HASS) Tools
 Random Home Assistant tools that CrossEye has created.
