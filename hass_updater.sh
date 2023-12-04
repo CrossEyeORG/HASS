@@ -10,11 +10,12 @@
 
 
 # Global variables
+HASS_AVAILABLE_VERSION=$(/usr/bin/curl --silent "https://api.github.com/repos/home-assistant/core/releases/latest" | /usr/bin/grep -Po '"tag_name": "\K.*?(?=")')
+HASS_INSTALLED_VERSION=$($HASS_VIRTUALENV_BASE/bin/hass --version)
+HASS_PIP_PATH="bin/pip3.11"
+HASS_SERVICE_NAME="homeassistant.service"
 HASS_VIRTUALENV_BASE="/srv/homeassistant"
 HASS_VIRTUALENV_USER="homeassistant"
-HASS_SERVICE_NAME="homeassistant.service"
-HASS_INSTALLED_VERSION=$($HASS_VIRTUALENV_BASE/bin/hass --version)
-HASS_AVAILABLE_VERSION=$(/usr/bin/curl --silent "https://api.github.com/repos/home-assistant/core/releases/latest" | /usr/bin/grep -Po '"tag_name": "\K.*?(?=")')
 
 # Emitting logs to Syslog
 exec 1> >(logger -s -t $(basename $0)) 2>&1
@@ -34,7 +35,7 @@ if [ $(version ${HASS_INSTALLED_VERSION}) -lt $(version ${HASS_AVAILABLE_VERSION
     sudo -u $HASS_VIRTUALENV_USER -H -s << EOF
         cd $HASS_VIRTUALENV_BASE
         . bin/activate
-        bin/pip3 install --upgrade homeassistant
+        $HASS_PIP_PATH install --upgrade homeassistant
         exit
 EOF
     /usr/bin/systemctl start $HASS_SERVICE_NAME
