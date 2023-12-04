@@ -4,7 +4,7 @@
 #Description    : Auto updates Home Assistant (HASS) Python virtual environment.
 #Author         : Gabriel Zellmer (CrossEye)
 #Repository     : https://github.com/CrossEyeORG/HASS
-#Version        : 1.1
+#Version        : 1.2
 #Notes          : Needs the globals configured to your local environment and added to a cron job.
 ################################################################
 
