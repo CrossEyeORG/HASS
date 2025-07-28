@@ -18,10 +18,12 @@ HASS_VIRTUALENV_BASE="/srv/homeassistant"
 # Emitting logs to Syslog
 exec 1> >(logger -s -t $(basename $0)) 2>&1
 
-printf "[INFO] Setting HASS python venv Certifi path...\n"
+printf "[INFO] Setting HASS python venv Certifi path...\n" >&2
 cd $HASS_VIRTUALENV_BASE
 . bin/activate
-HASS_CERTIFI_PATH=$(python -m certifi)
+HASS_CERTIFI_PATH=$(bin/python -m certifi)
+
+printf "[INFO] Comparing local CA trust store to Certifi CA trust store...\n" >&2
 if cmp -s "$HASS_HOST_CA_PATH" "$HASS_CERTIFI_PATH"; then
     printf "[INFO] Certifi has already been updated with the host CA trust store. No action needed." >&2
     exit 0
